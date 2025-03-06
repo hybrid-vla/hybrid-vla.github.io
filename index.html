@@ -1,0 +1,854 @@
+<!--  -->
+
+
+<!-- --------------------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="robot learning, diffusion models, 3D vision, imitation learning, deep learning, robotics, manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="628" />
+  
+  <article class="post-content">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lift3D" />
+    <meta name="twitter:description"
+        content="HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation" />
+    <meta name="twitter:url" content="https://3d-diffuser-actor.github.io/" />
+    <meta name="twitter:image" content="https://3d-diffuser-actor.github.io/static/images/preview_new.jpeg" />
+    <meta name="twitter:image" content="https://3d-diffuser-actor.github.io/static/images/preview_new.jpeg" />
+    <meta name="twitter:image:src" content="https://3d-diffuser-actor.github.io/static/images/preview_new.jpeg" />
+    <meta name="twitter:image_alt" content="3D Diffuser Actor" />
+  <article class="post-content">
+
+  <title>HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+ <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  
+
+  <style>
+    .material-symbols-rounded {
+        font-variation-settings: 'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+
+    .linkscontainer {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .links {
+        /*font-size: 5rem;*/
+        /*margin: 0 -20px;*/
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .links a span.material-symbols-rounded {
+        max-width: 25px;
+    }
+
+    span.material-symbols-rounded {
+        max-width: 25px;
+    }
+
+    .links a {
+        display: inline-flex;
+        /*flex-direction: column;*/
+        align-items: center;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 5px 7px;
+        color: #f6f3f1 !important;
+        font-family: 'GT Ultra', sans-serif !important;
+        font-weight: 400;
+        /*margin: 0 10px;*/
+        transition: transform .2s;
+        background-color: rgba(var(--btn-bgc), 1);
+    }
+
+
+    .links a:nth-child(1) {
+        --btn-bgc: 237, 100, 90;
+    }
+
+    .links a:hover {
+        transform: scale(1.2);
+        color: #f6f3f1 !important;
+    }
+
+    .links a:active {
+        transform: scale(1.3);
+    }
+
+    .links a:nth-child(2) {
+        --btn-bgc: 47, 138, 196;
+    }
+
+    .links a:nth-child(3) {
+        --btn-bgc: 229, 134, 6;
+    }
+
+    .links a:nth-child(4) {
+        --btn-bgc: 133, 180, 51;
+    }
+
+    .links a:nth-child(5) {
+        --btn-bgc: 204, 97, 176;
+    }
+
+    .links a span.material-symbols-rounded {
+        margin-right: .25rem;
+    }
+
+    .links a:not(:last-child) {
+        /*margin-right: 20px;*/
+    }
+
+
+    .links .material-symbols-rounded {
+        font-size: 1.25rem;
+    }
+
+
+    .links i {
+        font-size: 28px;
+    }
+
+    .fig {
+        width: 100%;
+        display: block;
+        padding: 0 10px;
+        margin: 0 auto;
+    }
+
+    img.arch {
+        max-width: 500px;
+    }
+
+    img.blobs {
+        max-width: 350px;
+    }
+
+    .teaser {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .teaser + section {
+        margin-top: 1rem;
+    }
+
+    .teaser video {
+        max-width: 600px;
+        width: 100%;
+    }
+
+    img.teaser {
+        max-width: 90%;
+    }
+
+    .abstract-imgs .col {
+        display: flex;
+        align-items: center;
+    }
+
+    .videowrapper {
+        float: none;
+        clear: both;
+        width: 100%;
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+        height: 0;
+    }
+
+    .wrapwrap {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .videowrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .abstract-capt {
+        font-size: 0.8rem;
+        display: block !important;
+        text-align: center;
+    }
+
+    .latex {
+        display: inline;
+        font-family: 'Math', monospace;
+        font-style: italic;
+    }
+
+    p {
+        margin: 0 !important;
+    }
+
+    .bs-tooltip-end {
+        margin-left: 3px !important;
+    }
+
+    section {
+        margin: 2rem 0;
+    }
+
+    section h5 {
+        margin: 1.5rem 0 0.75rem 0;
+    }
+
+    .iconbutton {
+        padding: 0.1rem 0.3rem;
+        display: flex;
+        border: none !important;
+        background-color: #4B495B !important;
+        color: #f5ece5 !important;
+        font-family: 'GT Ultra', sans-serif !important;
+        font-weight: 400;
+        text-decoration: none !important;
+    }
+
+    .iconbutton span.material-symbols-rounded {
+        font-size: 1.5rem;
+        /* font-weight: 700; */
+    }
+
+    .playpause span.material-symbols-rounded {
+        font-variation-settings: 'wght' 700;
+
+
+    }
+
+    .iconbutton span.material-symbols-rounded:hover {
+        color: #faf6f2 !important;
+    }
+
+    .iconbutton:hover, .iconbutton:focus {
+        background-color: #2E2E38 !important;
+        border-color: none !important;
+        color: #faf6f2 !important;
+    }
+
+    .iconbutton:focus {
+
+    }
+
+    .iconbutton:active {
+        background-color: #09090B !important;
+
+    }
+
+    [data-clipboard-target] {
+        cursor: pointer;
+    }
+
+    [data-clipboard-target]:hover {
+        color: #276FBF !important;
+    }
+
+    /* .emptyrooms {
+         max-width: 80%;
+     }*/
+
+    .emptyrooms {
+        display: flex;
+        /*justify-content: center;*/
+        align-items: flex-start;
+        background-color: #f5ece5;
+    }
+
+    .playpause {
+        flex-shrink: 0;
+    }
+
+    .emptyrooms img:first-child {
+        width: 16.196944%;
+        margin-right: 0.6%;
+    }
+
+    .emptyrooms img:last-child {
+        width: 82.8862479%;
+    }
+
+
+    section h3 {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    section h5, section h3 {
+        justify-content: space-between;
+
+        display: flex;
+        align-items: center;
+    }
+
+    h3, h5 {
+        scroll-margin-top: 25px;
+        /*display: inline-block;*/
+    }
+
+    h3[data-exclude-link], h5[data-exclude-link] {
+        cursor: initial;
+    }
+
+    h3 span, h5 span {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    h3 span:hover, h5 span:hover {
+
+        color: #276FBF !important;
+    }
+
+    /*
+            h3[data-exclude-link]:hover, h5[data-exclude-link]:hover {
+                color: initial !important;
+            }*/
+
+    .carousel {
+        margin: 1rem 0;
+    }
+
+    .ltx {
+        vertical-align: baseline;
+    }
+
+    .cit {
+        background-color: rgba(26, 25, 31, 0.05);
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        display: inline-block;
+        margin: 0 auto;
+        overflow-y: hidden;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        font-family: 'Code', monospace;
+    }
+
+    .cit_cont {
+        display: flex;
+    }
+
+    .video-container {
+        position: relative;
+    }
+
+    /* .video-container .video-border {
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         box-shadow: inset 0px 0px 0px 6px #f5ece5;
+     }*/
+
+    .video-container video {
+        width: 100%;
+        display: block;
+        clip-path: inset(5px 5px);
+    }
+
+    .video-container img {
+        width: 100%;
+    }
+
+    .splide > * {
+        font-weight: 500;
+        position: initial;
+    }
+
+    .splide__arrow {
+        position: initial;
+        background: none;
+        /*opacity: 1;*/
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform: none;
+        font-size: 1.25rem;
+        justify-content: end;
+        width: 1.5em;
+    }
+
+    .splide__arrow--prev {
+        justify-content: left;
+    }
+
+    .splide__slide {
+        height: 0;
+    }
+
+    .splide__slide.is-visible {
+        height: auto;
+    }
+
+    .move-cont {
+        display: flex;
+    }
+
+    .move-cont > video {
+        max-width: 100%;
+    }
+
+    .splide__pagination__page.is-active {
+        background: #000;
+    }
+
+    .splide__pagination__page {
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .splide__pagination {
+        margin-top: 0.25rem;
+    }
+
+    .splide__pagination__page:hover {
+        background: #aaa;
+        transform: scale(1.2);
+    }
+
+    .splide__track_and_arrows {
+        display: flex;
+    }
+
+    .splide__arrows {
+        display: flex;
+        align-items: center;
+    }
+
+    .styletransfer {
+        display: grid;
+        grid-row-gap: .5rem;
+        grid-template-columns: 1fr 20px 1fr 1fr 1fr 20px 1fr 1fr 1fr;
+    }
+
+    .inversion {
+        display: grid;
+        /*grid-row-gap: .5rem;*/
+        /*grid-template-columns: 1fr 20px 1fr 1fr 1fr 20px 1fr 1fr 1fr;*/
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .styletransfer img {
+        max-width: 100%;
+        clip-path: inset(2px 2px);
+    }
+
+    .inversion span {
+        text-align: center;
+    }
+
+    .inversion img {
+        max-width: 100%;
+        clip-path: inset(2px 2px);
+    }
+
+
+    #inversion ~ .splide img {
+        max-width: 100%;
+        padding: 0.3rem;
+    }
+
+    .styletransfer span {
+        text-align: center;
+    }
+
+    .styletransfer span:nth-child(2) {
+        grid-column-start: 3;
+        grid-column-end: 6;
+    }
+
+    .styletransfer span:nth-child(3) {
+        grid-column-start: 7;
+        grid-column-end: 10;
+    }
+
+
+    @media (min-width: 992px) {
+        .container {
+            max-width: 1050px;
+        }
+    }
+
+    .inversion_subheader {
+        font-weight: bold;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    .inversion_subheader:not(:first-of-type) {
+        margin-top: 0.2rem;
+    }
+
+    .inversion_subheader + .splide {
+        margin: 0.2rem 0 !important;
+    }
+
+    /*
+            .move-cont .video-container:nth-child(8), .move-cont .video-container:nth-child(7) {
+                display: none;
+            }*/
+
+    @media (max-width: 991px) {
+        /*
+                    .move-cont .video-container:nth-child(5), .move-cont .video-container:nth-child(6) {
+                        display: none;
+                    }*/
+        .move-cont > video {
+            max-width: 150%;
+            clip-path: inset(0 33.333333% 0 0);
+        }
+
+        header h3 {
+            font-size: 1.5rem;
+        }
+
+        .cit {
+            /*font-size: 12px !important;*/
+        }
+
+        .emptyrooms img:last-child {
+            width: 99.6% !important;
+        }
+
+        .emptyrooms img:first-child {
+            width: 19.46% !important;
+            margin-right: 0.7522% !important;
+        }
+
+        .styletransfer {
+            display: grid;
+            grid-template-columns: 1fr 15px 1fr 1fr 15px 1fr 1fr !important;
+        }
+
+        .styletransfer img:nth-child(9n+3), .styletransfer img:nth-child(9n-1) {
+            display: none;
+        }
+
+        .styletransfer span:nth-child(2) {
+            grid-column-start: 3;
+            grid-column-end: 5;
+        }
+
+        .styletransfer span:nth-child(3) {
+            grid-column-start: 6;
+            grid-column-end: 8;
+        }
+    }
+
+    .author {
+        padding: 0 0.6rem;
+    }
+
+    @media (max-width: 767px) {
+        html, body {
+
+            /*font-size: 16px;*/
+        }
+
+        .author {
+            font-size: 18px;
+        }
+
+        .insts {
+            font-size: 16px;
+        }
+
+        /*.move-cont .video-container:nth-child(4) {
+            display: none;
+        }*/
+        .move-cont > video {
+            max-width: 200%;
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .inversion *:nth-child(5n+2) {
+            display: none;
+        }
+
+        .inversion {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .emptyrooms img:last-child {
+            width: 124.477307% !important;
+        }
+
+        .emptyrooms img:first-child {
+            width: 24.3243243% !important;
+            margin-right: 0.9% !important;
+        }
+
+        .styletransfer {
+            display: grid;
+            grid-template-columns: 1fr 10px 1fr 10px 1fr !important;
+        }
+
+        .styletransfer img:nth-child(9n+2), .styletransfer img:nth-child(9n-2) {
+            display: none;
+        }
+
+        .styletransfer span:nth-child(2) {
+            grid-column-start: 3;
+            grid-column-end: 4;
+        }
+
+        .styletransfer span:nth-child(3) {
+            grid-column-start: 5;
+            grid-column-end: 6;
+        }
+    }
+
+    @media (max-width: 540px) {
+        .links a span.material-symbols-rounded {
+            max-width: 20px;
+        }
+
+        .links {
+            gap: 12px;
+        }
+    }
+
+    @media (max-width: 510px) {
+        /*
+                    .move-cont .video-container:nth-child(3) {
+                        display: none;
+                    }*/
+        .move-cont > video {
+            max-width: 300%;
+            clip-path: inset(0 66.6666666% 0 0);
+        }
+
+
+        .inversion {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .inversion span:nth-child(n+4) {
+            grid-row: 3;
+        }
+
+        .links .material-symbols-rounded {
+            /*display: none;*/
+            font-size: 1rem;
+        }
+
+        .links a span.material-symbols-rounded {
+            max-width: 18px;
+        }
+
+    }
+
+    @media (max-width: 399px) {
+
+    }
+
+    @media (max-width: 380px) {
+        /*.links .material-symbols-rounded {*/
+        /*    display: none;*/
+        /*    padding: 5px 10px;*/
+        /*    !*font-size: 1rem;*!*/
+        /*}*/
+    }
+
+    @media (max-width: 575px) {
+
+        img.blobs {
+            max-width: 300px;
+        }
+
+        .emptyrooms img:last-child {
+            width: 165.941536% !important;
+        }
+
+        .emptyrooms img:first-child {
+            width: 32.4269205% !important;
+            margin-right: 1.15% !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .abstract-imgs .col-md-7 {
+            border-right: 1px solid #1f1e1d;
+        }
+
+        img.arch, img.blobs {
+            max-width: 600px;
+        }
+
+    }
+
+
+</style>
+</head>
+<!-- --------------------------------------------------------- -->
+<body>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation</h1>
+              <div class="is-size-4 publication-authors">
+                <span class="author-block">
+                    <a>Anonymous</a>
+                </span>
+    
+            <div class="linkscontainer">
+              <div class="links mt-4">
+              <a href="" target="_blank"><span class="material-symbols-rounded">
+              description
+              </span><span>Paper</span></a>
+              <a href="" target="_blank"><span class="material-symbols-rounded">
+              code
+              </span><span>Code</span></a>
+              <a href="" target="_blank"><span class="material-symbols-rounded">
+              science
+              </span><span>Checkpoints</span></a>
+              <a href="" target="_blank"><span class="material-symbols-rounded">
+              folder
+              </span><span>Data</span></a>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Hybrid VLA</h2>
+            </div>
+          </div>
+          
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        HybridVLA innovatively integrates diffusion and autoregressive action prediction within a single LLM, fully leveraging the continuity and probabilistic nature of diffusion alongside the reasoning capabilities of autoregressive modeling. It undergoes pretraining on large, diverse, cross-embodied real-world robotic datasets and is further fine-tuned on both simulation and self-collected real-world data. HybridVLA achieves remarkable performance across various tasks, demonstrating strong generalization to unseen manipulated objects, backgrounds, spatial positions, and lighting conditions.
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Overview</h2>
+            </div>
+          </div>
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <img src="./static/images/overview.png" alt="input image" style="vertical-align:middle;margin:0px 0px" width="100%"/>
+            </div>
+          </div>
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <div class="content has-text-justified">
+                    <p>
+                        HybridVLA innovatively integrates diffusion and autoregressive action prediction within a single LLM, fully leveraging the continuity and probabilistic nature of diffusion alongside the reasoning capabilities of autoregressive modeling. It undergoes pretraining on large, diverse, cross-embodied real-world robotic datasets and is further fine-tuned on both simulation and self-collected real-world data. HybridVLA achieves remarkable performance across various tasks, demonstrating strong generalization to unseen manipulated objects, backgrounds, spatial positions, and lighting conditions.
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">HybridVLA Framework</h2>
+            </div>
+          </div>
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <img src="./static/images/method.png" alt="input image" style="vertical-align:middle;margin:0px 0px" width="100%"/>
+            </div>
+          </div>
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <div class="content has-text-justified">
+                    <p>
+                        The input data, regardless of modality, is encoded and concatenated into our formatted token sequence. To integrate diffusion into the LLM, HybridVLA simultaneously projects the denoising timestep and noisy actions into the token sequence. The marker tokens, < BOD > (beginning of diffusion) and < EOD > (end of diffusion), are designed to bridge the two generation methods.
+                    </p>
+                    <p>
+                        By employing collaborative training to explicit incorporate knowledge from both generation methods, these two action types reinforce each other and are adaptively ensembled to control the robot arms.
+                    </p>
+                    <p>
+                        For HybridVLA's output, continuous actions are generated through iterative denoising, while discrete actions are produced autoregressively, all within the next-token prediction process.
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+</body>
+
+</html>
