@@ -75,4 +75,68 @@ $(document).ready(function() {
 
     bulmaSlider.attach();
 
+    const videoPaths = {
+      franka: {
+        open_drawer: ['default'],
+        pick_and_place: ['add_light', 'blue_block1', 'blue_block2', 'blue_charger1', 'blue_charger2', 'complex_background', 'high_place', 'red_block_grey_bowl1', 'red_block_grey_bowl2', 'strawberry'],
+        pour_water: ['episode1', 'episode2'],
+        pull_charger: ['episode1', 'episode2'],
+        wipe_whiteboard: ['episode1', 'episode2'],
+      },
+      agilex: {
+        pick_place: ['episode_1', 'episode_2', 'episode_3'],
+        lift_place: ['episode_1', 'episode2', 'episode_3'],
+        place_bottle: ['episode_1', 'episode_2', 'episode_3'],
+        wipe_board: ['episode_1', 'episode_2', 'episode_3'],
+        fold_shorts: ['episode_1', 'episode_2', 'episode_3', 'episode_4, episode_5', 'episode_6'],
+      }
+    };
+
+    $('#robot-select').change(function() {
+      const robot = $(this).val();
+      const taskSelect = $('#task-select');
+      const episodeSelect = $('#episode-select');
+      taskSelect.empty();
+      episodeSelect.empty();
+      if (robot) {
+        Object.keys(videoPaths[robot]).forEach(task => {
+          taskSelect.append(`<option value="${task}">${task}</option>`);
+        });
+        taskSelect.prop('disabled', false).trigger('change');
+      } else {
+        taskSelect.prop('disabled', true);
+      }
+    });
+
+    $('#task-select').change(function() {
+      const robot = $('#robot-select').val();
+      const task = $(this).val();
+      const episodeSelect = $('#episode-select');
+      episodeSelect.empty();
+      if (task) {
+        videoPaths[robot][task].forEach((episode) => {
+          episodeSelect.append(`<option value="${episode}">${episode}</option>`);
+        });
+        episodeSelect.prop('disabled', false).trigger('change');
+      } else {
+        episodeSelect.prop('disabled', true);
+      }
+    });
+
+    $('#episode-select').change(function() {
+      const robot = $('#robot-select').val();
+      const task = $('#task-select').val();
+      const episode = $(this).val();
+      const videoSource = $('#video-source');
+      if (episode) {
+        videoSource.attr('src', `./static/videos/${robot}/${task}/${episode}.mp4`);
+        $('#selected-video')[0].load();
+      }
+    });
+
+    // Set default selections
+    $('#robot-select').val('franka').trigger('change');
+    $('#task-select').val('open_drawer').trigger('change');
+    $('#episode-select').val('default').trigger('change');
+
 })

@@ -16,7 +16,7 @@
   
   <article class="post-content">
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Lift3D" />
+    <meta name="twitter:title" content="HybridVLA" />
     <meta name="twitter:description"
         content="HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation" />
     <meta name="twitter:url" content="https://3d-diffuser-actor.github.io/" />
@@ -735,13 +735,12 @@
 </head>
 <!-- --------------------------------------------------------- -->
 <body>
-
     <section class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <h1 class="title is-1 publication-title">HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation</h1>
+              <h1 class="title is-1 publication-title">HybridVLA: <br> Collaborative Diffusion and Autoregression <br> in a Unified Vision-Language-Action Model</h1>
               <div class="is-size-4 publication-authors">
                 <span class="author-block">
                     <a>Anonymous</a>
@@ -769,18 +768,51 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-    <section class="section">
-        <div class="container is-max-desktop">
-          <div class="columns is-centered has-text-centered">
+<section class="section">
+    <div class="container is-max-desktop has-text-centered">
+        <h2 class="title is-3">Video Result Samples</h2>
+        <div class="field is-grouped is-grouped-multiline is-centered">
+            <div class="control" style="display: flex; align-items: center; justify-content: center;">
+                <label class="label" style="margin-right: 10px;">Robot</label>
+                <div class="select">
+                    <select id="robot-select">
+                        <option value="franka">Franka</option>
+                        <option value="agilex">Agilex</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control" style="display: flex; align-items: center; justify-content: center;">
+                <label class="label" style="margin-right: 10px;">Task</label>
+                <div class="select">
+                    <select id="task-select" disabled>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+            <div class="control" style="display: flex; align-items: center; justify-content: center;">
+                <label class="label" style="margin-right: 10px;">Episode</label>
+                <div class="select">
+                    <select id="episode-select" disabled>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="video-container">
+            <video id="selected-video" controls width="100%">
+                <source id="video-source" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container is-max-desktop">
+          <!-- <div class="columns is-centered has-text-centered">
             <div class="column">
                 <h2 class="title is-3">Hybrid VLA</h2>
             </div>
-          </div>
+          </div> -->
           
           <div class="columns is-centered has-text-centered">
             <div class="column">
@@ -792,11 +824,10 @@
                 </div>
             </div>
           </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-desktop">
+    </div>
+</section>
+<section class="section">
+    <div class="container is-max-desktop">
           <div class="columns is-centered has-text-centered">
             <div class="column">
                 <h2 class="title is-3">Overview</h2>
@@ -816,12 +847,10 @@
                 </div>
             </div>
           </div>
-        </div>
-    </section>
-
-
-    <section class="section">
-        <div class="container is-max-desktop">
+    </div>
+</section>
+<section class="section">
+    <div class="container is-max-desktop">
           <div class="columns is-centered has-text-centered">
             <div class="column">
                 <h2 class="title is-3">HybridVLA Framework</h2>
@@ -847,8 +876,8 @@
                 </div>
             </div>
           </div>
-        </div>
-    </section>
+    </div>
+</section>
 </body>
 
 </html>

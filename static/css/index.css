@@ -155,3 +155,7 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.field.is-grouped.is-grouped-multiline.is-centered {
+    justify-content: center;
+}
