@@ -85,7 +85,7 @@ $(document).ready(function() {
       },
       agilex: {
         pick_place: ['episode_1', 'episode_2', 'episode_3'],
-        lift_place: ['episode_1', 'episode2', 'episode_3'],
+        lift_place: ['episode_1', 'episode_2', 'episode_3', 'episode_4_background', 'episode_5_object', 'episode_6_height', 'episode_7_light'],
         place_bottle: ['episode_1', 'episode_2', 'episode_3'],
         wipe_board: ['episode_1', 'episode_2', 'episode_3'],
         fold_shorts: ['episode_1', 'episode_2', 'episode_3', 'episode_4, episode_5', 'episode_6'],
