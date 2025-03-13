@@ -756,10 +756,6 @@
             </span><span>Code</span></a>
             <a href="" target="_blank"><span class="material-symbols-rounded">
             science
-            </span><span>Checkpoints</span></a>
-            <a href="" target="_blank"><span class="material-symbols-rounded">
-            folder
-            </span><span>Data</span></a>
             </div>
             </div>
 
@@ -773,8 +769,50 @@
 <section class="hero is-light is-small">
     <div class="hero-body">
         <div class="container has-text-centered">
+        <h2 class="title is-3">Demonstrations</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-steve">
+            <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/franka_wipe_board.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-chair-tp">
+            <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/franka_put_item.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-shiba">
+            <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/agilex_wipe_board_1.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/agilex_wipe_board_2.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<!-- CSX -->
+
+<!-- CSX -->
+<section class="hero is-light is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
         <h2 class="title is-3">Generalization</h2>
         <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-blueshirt">
+            <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/generalization/franka_light.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
             <div class="item item-steve">
             <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/generalization/franka_object_1.mp4"
@@ -787,30 +825,6 @@
                         type="video/mp4">
             </video>
             </div>
-            <div class="item item-shiba">
-            <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/generalization/franka_object_3.mp4"
-                        type="video/mp4">
-            </video>
-            </div>
-            <div class="item item-fullbody">
-            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/generalization/franka_hight.mp4"
-                        type="video/mp4">
-            </video>
-            </div>
-            <div class="item item-blueshirt">
-            <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/generalization/franka_light.mp4"
-                        type="video/mp4">
-            </video>
-            </div>
-            <div class="item item-mask">
-            <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/generalization/franka_background.mp4"
-                        type="video/mp4">
-            </video>
-            </div>
             <div class="item item-coffee">
             <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/generalization/agilex_object.mp4"
@@ -820,12 +834,6 @@
             <div class="item item-toby">
             <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/generalization/agilex_hight.mp4"
-                        type="video/mp4">
-            </video>
-            </div>
-            <div class="item item-toby">
-            <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/generalization/agilex_light.mp4"
                         type="video/mp4">
             </video>
             </div>
@@ -863,14 +871,6 @@
                     </select>
                 </div>
             </div>
-            <div class="control" style="display: flex; align-items: center; justify-content: center;">
-                <label class="label" style="margin-right: 10px;">Episode</label>
-                <div class="select">
-                    <select id="episode-select" disabled>
-                        <!-- Options will be populated dynamically -->
-                    </select>
-                </div>
-            </div>
         </div>
         <div class="video-container">
             <video id="selected-video" controls width="100%">
@@ -895,7 +895,7 @@
                 <h2 class="title is-3">Abstract</h2>
                 <div class="content has-text-justified">
                     <p>
-                        HybridVLA innovatively integrates diffusion and autoregressive action prediction within a single LLM, fully leveraging the continuity and probabilistic nature of diffusion alongside the reasoning capabilities of autoregressive modeling. It undergoes pretraining on large, diverse, cross-embodied real-world robotic datasets and is further fine-tuned on both simulation and self-collected real-world data. HybridVLA achieves remarkable performance across various tasks, demonstrating strong generalization to unseen manipulated objects, backgrounds, spatial positions, and lighting conditions.
+                        Recent advancements in vision-language models (VLMs) for common-sense reasoning have led to the development of vision-language-action (VLA) models, enabling robots to perform generalized manipulation. Although existing autoregressive VLA methods leverage large-scale pretrained knowledge, they disrupt the continuity of actions. Meanwhile, some VLA methods incorporate an additional diffusion head to predict continuous actions, relying solely on VLM-extracted features, which limits their reasoning capabilities. In this paper, we introduce HybridVLA, a unified framework that seamlessly integrates the strengths of both autoregressive and diffusion policies within a single large language model, rather than simply connecting them. To bridge the generation gap, a collaborative training recipe is proposed that injects the diffusion modeling directly into the next-token prediction. With this recipe, we find that these two forms of action prediction not only reinforce each other but also exhibit varying performance across different tasks. Therefore, we design a collaborative action ensemble mechanism that adaptively fuses these two predictions, leading to more robust control. In experiments, HybridVLA outperforms previous state-of-the-art VLA methods across various simulation and real-world tasks, including both single-arm and dual-arm robots, while demonstrating stable manipulation in previously unseen configurations.
                     </p>
                 </div>
             </div>
@@ -942,10 +942,10 @@
             <div class="column">
                 <div class="content has-text-justified">
                     <p>
-                        The input data, regardless of modality, is encoded and concatenated into our formatted token sequence. To integrate diffusion into the LLM, HybridVLA simultaneously projects the denoising timestep and noisy actions into the token sequence. The marker tokens, < BOD > (beginning of diffusion) and < EOD > (end of diffusion), are designed to bridge the two generation methods.
+                        The input data, regardless of modality, is encoded and concatenated into our formatted token sequence. To integrate diffusion into the LLM, HybridVLA simultaneously projects the denoising timestep and noisy actions into the token sequence. The marker tokens, $<$BOD$>$ (beginning of diffusion) and $<$EOD$>$ (end of diffusion), are designed to bridge the two generation methods.
                     </p>
                     <p>
-                        By employing collaborative training to explicit incorporate knowledge from both generation methods, these two action types reinforce each other and are adaptively ensembled to control the robot arms.
+                        By employing collaborative training to explicitly incorporate knowledge from both generation methods, these two action types reinforce each other and are adaptively ensembled to control the robot arms.
                     </p>
                     <p>
                         For HybridVLA's output, continuous actions are generated through iterative denoising, while discrete actions are produced autoregressively, all within the next-token prediction process.
