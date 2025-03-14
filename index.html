@@ -743,7 +743,12 @@
             <h1 class="title is-1 publication-title">HybridVLA: <br> Collaborative Diffusion and Autoregression <br> in a Unified Vision-Language-Action Model</h1>
             <div class="is-size-4 publication-authors">
             <span class="author-block">
-                <a>Anonymous</a>
+                <span class="author"><a href="https://liujiaming1996.github.io/">Jiaming Liu</a><sup>1,2*</sup>, Hao Chen<sup>3*</sup>, Pengju An<sup>1,2†</sup>, <a href="https://minifranka.github.io/">Zhuoyang Liu</a><sup>1†</sup>, Renrui Zhang<sup>3‡</sup>, Chenyang Gu<sup>1,2</sup>, Xiaoqi Li<sup>1</sup>, Ziyu Guo<sup>3</sup>,<br></span>
+                <span class="author">Sixiang Chen<sup>1,2</sup>, Mengzhen Liu<sup>1,2</sup>, Chengkai Hou<sup>1,2</sup>, Mengdi Zhao<sup>2</sup>, KC alex Zhou<sup>1</sup>, Pheng-Ann Heng<sup>3</sup>, Shanghang Zhang<sup>1,2</sup> <sup>✉</sup></span>
+                <span class="author"><br></span>
+                <span class="author"> <sup>1</sup>State Key Laboratory of Multimedia Information Processing, School of Computer Science, Peking University;<br></span>
+                <span class="author"> <sup>2</sup>Beijing Academy of Artificial Intelligence (BAAI); <sup>3</sup>CUHK<br></span>
+                <span class="author"> * Equal contribution, † Equal technical contribution, ‡ Project lead, ✉ Corresponding author<br></span>
             </span>
 
         <div class="linkscontainer">
@@ -751,7 +756,7 @@
             <a href="" target="_blank"><span class="material-symbols-rounded">
             description
             </span><span>Paper</span></a>
-            <a href="" target="_blank"><span class="material-symbols-rounded">
+            <a href="https://github.com/PKU-HMI-Lab/Hybrid-VLA" target="_blank"><span class="material-symbols-rounded">
             code
             </span><span>Code</span></a>
             </div>
@@ -771,25 +776,25 @@
         <div id="results-carousel" class="carousel results-carousel">
             <div class="item item-steve">
             <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/demostrations/franka_wipe_board.mp4"
+                <source src="./static/videos/demostrations/franka_drawer.mp4"
                         type="video/mp4">
             </video>
             </div>
             <div class="item item-chair-tp">
             <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/demostrations/franka_put_item.mp4"
+                <source src="./static/videos/demostrations/franka_wipe.mp4"
                         type="video/mp4">
             </video>
             </div>
             <div class="item item-shiba">
             <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/demostrations/agilex_wipe_board_1.mp4"
+                <source src="./static/videos/demostrations/agilex_wipe_1.mp4"
                         type="video/mp4">
             </video>
             </div>
             <div class="item item-fullbody">
             <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/demostrations/agilex_wipe_board_2.mp4"
+                <source src="./static/videos/demostrations/agilex_wipe_2.mp4"
                         type="video/mp4">
             </video>
             </div>
@@ -842,39 +847,6 @@
             </video>
             </div>
         </div>
-        </div>
-    </div>
-</section>
-<!-- CSX -->
-
-<!-- CSX -->
-<section class="section">
-    <div class="container is-max-desktop has-text-centered">
-        <h2 class="title is-3">Video Result Samples</h2>
-        <div class="field is-grouped is-grouped-multiline is-centered">
-            <div class="control" style="display: flex; align-items: center; justify-content: center;">
-                <label class="label" style="margin-right: 10px;">Robot</label>
-                <div class="select">
-                    <select id="robot-select">
-                        <option value="franka">Franka</option>
-                        <option value="agilex">Agilex</option>
-                    </select>
-                </div>
-            </div>
-            <div class="control" style="display: flex; align-items: center; justify-content: center;">
-                <label class="label" style="margin-right: 10px;">Task</label>
-                <div class="select">
-                    <select id="task-select" disabled>
-                        <!-- Options will be populated dynamically -->
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="video-container">
-            <video id="selected-video" controls width="100%">
-                <source id="video-source" src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
         </div>
     </div>
 </section>
@@ -953,6 +925,40 @@
           </div>
     </div>
 </section>
+
+<!-- CSX -->
+<section class="section">
+    <div class="container is-max-desktop has-text-centered">
+        <h2 class="title is-3">Video Result Samples</h2>
+        <div class="field is-grouped is-grouped-multiline is-centered">
+            <div class="control" style="display: flex; align-items: center; justify-content: center;">
+                <label class="label" style="margin-right: 10px;">Robot</label>
+                <div class="select">
+                    <select id="robot-select">
+                        <option value="franka">Franka</option>
+                        <option value="agilex">Agilex</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control" style="display: flex; align-items: center; justify-content: center;">
+                <label class="label" style="margin-right: 10px;">Task</label>
+                <div class="select">
+                    <select id="task-select" disabled>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="video-container">
+            <video id="selected-video" controls width="100%">
+                <source id="video-source" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+<!-- CSX -->
+
 </body>
 
 </html>
