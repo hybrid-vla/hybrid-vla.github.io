@@ -743,8 +743,8 @@
             <h1 class="title is-1 publication-title">HybridVLA: <br> Collaborative Diffusion and Autoregression <br> in a Unified Vision-Language-Action Model</h1>
             <div class="is-size-4 publication-authors">
             <span class="author-block">
-                <span class="author"><a href="https://liujiaming1996.github.io/">Jiaming Liu</a><sup>1,2*</sup>, Hao Chen<sup>3*</sup>, Pengju An<sup>1,2†</sup>, <a href="https://minifranka.github.io/">Zhuoyang Liu</a><sup>1†</sup>, Renrui Zhang<sup>3‡</sup>, Chenyang Gu<sup>1,2</sup>, Xiaoqi Li<sup>1</sup>, Ziyu Guo<sup>3</sup>,<br></span>
-                <span class="author">Sixiang Chen<sup>1,2</sup>, Mengzhen Liu<sup>1,2</sup>, Chengkai Hou<sup>1,2</sup>, Mengdi Zhao<sup>2</sup>, KC alex Zhou<sup>1</sup>, Pheng-Ann Heng<sup>3</sup>, Shanghang Zhang<sup>1,2</sup> <sup>✉</sup></span>
+                <span class="author"><a href="https://liujiaming1996.github.io/">Jiaming Liu</a><sup>1,2*</sup>, <a href="https://scholar.google.com.hk/citations?user=tT03tysAAAAJ&hl=zh-CN&oi=sra">Hao Chen</a><sup>3*</sup>, Pengju An<sup>1,2†</sup>, <a href="https://minifranka.github.io/">Zhuoyang Liu</a><sup>1†</sup>,<a href="https://zrrskywalker.github.io/">Renrui Zhang</a><sup>3‡</sup>, <a href="https://gaystarc.github.io/">Chenyang Gu</a><sup>1,2</sup>, <a href="https://clorislili.github.io/clorisLi/">Xiaoqi Li</a><sup>1</sup>, <a href="https://ziyuguo99.github.io/">Ziyu Guo</a><sup>3</sup>,<br></span>
+                <span class="author"><a href="https://cscsx.github.io/">Sixiang Chen</a><sup>1,2</sup>, Mengzhen Liu<sup>1,2</sup>, Chengkai Hou<sup>1,2</sup>, Mengdi Zhao<sup>2</sup>, KC alex Zhou<sup>1</sup>, Pheng-Ann Heng<sup>3</sup>,<a href="https://www.shanghangzhang.com/">Shanghang Zhang</a><sup>1,2</sup> <sup>✉</sup></span>
                 <span class="author"><br></span>
                 <span class="author"> <sup>1</sup>State Key Laboratory of Multimedia Information Processing, School of Computer Science, Peking University;<br></span>
                 <span class="author"> <sup>2</sup>Beijing Academy of Artificial Intelligence (BAAI); <sup>3</sup>CUHK<br></span>
@@ -786,6 +786,12 @@
                         type="video/mp4">
             </video>
             </div>
+            <div class="item item-chair-tp">
+            <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/franka_pour.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
             <div class="item item-shiba">
             <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/demostrations/agilex_wipe_1.mp4"
@@ -798,7 +804,25 @@
                         type="video/mp4">
             </video>
             </div>
-        </div>
+            <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/agilex_lift.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/agilex_bottles.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/demostrations/agilex_fold.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+    </div>
         </div>
     </div>
 </section>
@@ -868,6 +892,20 @@
                         Recent advancements in vision-language models (VLMs) for common-sense reasoning have led to the development of vision-language-action (VLA) models, enabling robots to perform generalized manipulation. Although existing autoregressive VLA methods leverage large-scale pretrained knowledge, they disrupt the continuity of actions. Meanwhile, some VLA methods incorporate an additional diffusion head to predict continuous actions, relying solely on VLM-extracted features, which limits their reasoning capabilities. In this paper, we introduce HybridVLA, a unified framework that seamlessly integrates the strengths of both autoregressive and diffusion policies within a single large language model, rather than simply connecting them. To bridge the generation gap, a collaborative training recipe is proposed that injects the diffusion modeling directly into the next-token prediction. With this recipe, we find that these two forms of action prediction not only reinforce each other but also exhibit varying performance across different tasks. Therefore, we design a collaborative action ensemble mechanism that adaptively fuses these two predictions, leading to more robust control. In experiments, HybridVLA outperforms previous state-of-the-art VLA methods across various simulation and real-world tasks, including both single-arm and dual-arm robots, while demonstrating stable manipulation in previously unseen configurations.
                     </p>
                 </div>
+            </div>
+          </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Video</h2>
+                <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/intro.mp4"
+                            type="video/mp4">
+                </video>
             </div>
           </div>
     </div>
