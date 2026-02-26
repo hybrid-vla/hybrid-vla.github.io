@@ -15,18 +15,14 @@
   <meta property="og:image:height" content="628" />
   
   <article class="post-content">
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="HybridVLA" />
     <meta name="twitter:description"
-        content="HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation" />
-    <meta name="twitter:url" content="https://3d-diffuser-actor.github.io/" />
-    <meta name="twitter:image" content="https://3d-diffuser-actor.github.io/static/images/preview_new.jpeg" />
-    <meta name="twitter:image" content="https://3d-diffuser-actor.github.io/static/images/preview_new.jpeg" />
-    <meta name="twitter:image:src" content="https://3d-diffuser-actor.github.io/static/images/preview_new.jpeg" />
-    <meta name="twitter:image_alt" content="3D Diffuser Actor" />
+        content="HybridVLA: Collaborative Diffusion and Autoregression in a Unified Vision-Language-Action Model" />
+    <meta name="twitter:url" content="https://hybrid-vla.github.io/" />
   <article class="post-content">
 
-  <title>HybridVLA: A Collaborative Diffusion and Autoregressive Vision-Language-Action Model for Generalizable Robotic Manipulation</title>
+  <title>HybridVLA: Collaborative Diffusion and Autoregression in a Unified Vision-Language-Action Model</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -888,7 +884,7 @@
                 <h2 class="title is-3">Abstract</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Recent advancements in vision-language models (VLMs) for common-sense reasoning have led to the development of vision-language-action (VLA) models, enabling robots to perform generalized manipulation. Although existing autoregressive VLA methods leverage large-scale pretrained knowledge, they disrupt the continuity of actions. Meanwhile, some VLA methods incorporate an additional diffusion head to predict continuous actions, relying solely on VLM-extracted features, which limits their reasoning capabilities. In this paper, we introduce HybridVLA, a unified framework that seamlessly integrates the strengths of both autoregressive and diffusion policies within a single large language model, rather than simply connecting them. To bridge the generation gap, a collaborative training recipe is proposed that injects the diffusion modeling directly into the next-token prediction. With this recipe, we find that these two forms of action prediction not only reinforce each other but also exhibit varying performance across different tasks. Therefore, we design a collaborative action ensemble mechanism that adaptively fuses these two predictions, leading to more robust control. In experiments, HybridVLA outperforms previous state-of-the-art VLA methods across various simulation and real-world tasks, including both single-arm and dual-arm robots, while demonstrating stable manipulation in previously unseen configurations.
+                        A central objective of manipulation policy design is to enable robots to comprehend human instructions and predict generalized actions in unstructured environments. Recent autoregressive vision-language-action (VLA) approaches discretize actions into bins to exploit the pretrained reasoning and generation paradigms of vision-language models (VLMs). While these models achieve efficient and scalable training, the discretization undermines the continuity required for precise control. In contrast, diffusion-based VLA methods incorporate an additional diffusion head to predict continuous actions, but they rely solely on feature representations extracted from the VLM, without leveraging the pretrained large language model (LLM) as an expert for iterative action generation. To integrate the complementary strengths of autoregressive and diffusion generation, we introduce HybridVLA, which innovatively leverages a shared LLM backbone to perform iterative action prediction through both paradigms. Specifically, a collaborative training recipe is proposed, incorporating diffusion denoising into the next-token prediction process and mitigating interference between the two generation paradigms. With this recipe, we find these two action prediction methods not only reinforce each other but also exhibit varying strengths across different scenarios. Therefore, we design a collaborative action ensemble mechanism that adaptively fuses both predictions, leading to more robust control. HybridVLA outperforms previous state-of-the-art VLA methods by 17% and 19% in mean success rate on simulation and real-world tasks, respectively, while demonstrating generalization to unseen configurations.
                     </p>
                 </div>
             </div>
@@ -926,7 +922,7 @@
             <div class="column">
                 <div class="content has-text-justified">
                     <p>
-                        HybridVLA innovatively integrates diffusion and autoregressive action prediction within a single LLM, fully leveraging the continuity and probabilistic nature of diffusion alongside the reasoning capabilities of autoregressive modeling. It undergoes pretraining on large, diverse, cross-embodied real-world robotic datasets and is further fine-tuned on both simulation and self-collected real-world data. HybridVLA achieves remarkable performance across various tasks, demonstrating strong generalization to unseen manipulated objects, backgrounds, spatial positions, and lighting conditions.
+                        Unlike recent diffusion-based VLA methods that attach a separate diffusion head after VLMs, HybridVLA innovatively integrates diffusion and autoregressive action prediction within a single LLM, embedding the denoising process of diffusion into the next-token prediction. Under our proposed methods, HybridVLA achieves remarkable performance across a wide range of tasks.
                     </p>
                 </div>
             </div>
@@ -949,13 +945,7 @@
             <div class="column">
                 <div class="content has-text-justified">
                     <p>
-                        The input data, regardless of modality, is encoded and concatenated into our formatted token sequence. To integrate diffusion into the LLM, HybridVLA simultaneously projects the denoising timestep and noisy actions into the token sequence. The marker tokens, $<$BOD$>$ (beginning of diffusion) and $<$EOD$>$ (end of diffusion), are designed to bridge the two generation methods.
-                    </p>
-                    <p>
-                        By employing collaborative training to explicitly incorporate knowledge from both generation methods, these two action types reinforce each other and are adaptively ensembled to control the robot arms.
-                    </p>
-                    <p>
-                        For HybridVLA's output, continuous actions are generated through iterative denoising, while discrete actions are produced autoregressively, all within the next-token prediction process.
+                        All multimodal inputs are encoded into tokens and subsequently organized into our designed token sequence formulation within the LLM's embedding space. For diffusion tokens, HybridVLA simultaneously projects the denoising timestep and noise into continuous vector representations. The corresponding noisy samples are iteratively fed into the LLM to predict the noise at each step. The marker tokens, $<$BOD$>$ (Beginning of Diffusion) and $<$EOD$>$ (End of Diffusion), are introduced to bridge the two generation paradigms. Subsequently, autoregressive actions are generated via next action-token prediction, explicitly conditioned on the preceding tokens. The two actions can be adaptively ensembled for robot arm control.
                     </p>
                 </div>
             </div>
